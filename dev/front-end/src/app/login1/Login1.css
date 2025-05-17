@@ -1,0 +1,102 @@
+.Login1ComponentClass {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.registerBox {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 36px 32px 28px 32px;
+  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.registerBox h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.registerBox form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.registerBox input[type="text"],
+.registerBox input[type="email"],
+.registerBox input[type="password"] {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.registerBox input:focus {
+  border: 1.5px solid #1a237e;
+}
+
+.passwordField {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordField input {
+  flex: 1;
+}
+
+.toggleEye {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.8;
+}
+
+.registerBtn {
+  background: #757575;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.registerBtn:hover {
+  background: #616161;
+}
+
+.loginBtn,
+.homeBtn {
+  background: #14296c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.loginBtn:hover,
+.homeBtn:hover {
+  background: #0d1a3a;
+}

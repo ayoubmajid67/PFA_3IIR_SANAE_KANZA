@@ -1,0 +1,229 @@
+.verifyPageComponentClass {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--blackColor);
+  background-color: var(--whiteColor);
+
+  .verifyPageLeft {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+
+    .verifyBackgroundImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.9) blur(2px);
+    }
+  }
+
+  .verifyPageRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--paddingLarge);
+    position: relative;
+
+    .logoLink {
+      position: absolute;
+      top: var(--spacingMedium);
+      left: var(--spacingMedium);
+
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+
+    .verifyFormContainer {
+      width: 100%;
+      max-width: 480px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacingLarge);
+
+      .verifyTitle {
+        font-size: var(--fontSizeH1);
+        font-weight: 600;
+        color: var(--blackColor);
+        text-align: center;
+        margin-bottom: var(--spacingMedium);
+      }
+
+      .emailDisplay {
+        display: flex;
+        align-items: center;
+        gap: var(--spacingSmall);
+        margin-bottom: var(--spacingLarge);
+
+        .emailIcon {
+          color: var(--primaryColor);
+          font-size: 28px;
+        }
+
+        .emailText {
+          font-size: var(--fontSizeLarge);
+          color: var(--blackColor);
+        }
+      }
+
+      .verifyForm {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacingLarge);
+
+        .codeInputs {
+          display: flex;
+          justify-content: center;
+          gap: var(--spacingMedium);
+
+          .codeInput {
+            --size: 65px;
+            width: var(--size);
+            height: var(--size);
+            border: 2px solid var(--primaryDarkColor);
+            border-radius: var(--borderRadiusMedium);
+            font-size: var(--fontSizeH3);
+            text-align: center;
+            background-color: var(--whiteColor);
+            transition: all var(--transitionDuration);
+
+            &:focus {
+              border-color: var(--primaryColor);
+              outline: none;
+              box-shadow: 0 0 0 2px rgba(45, 141, 85, 0.1);
+            }
+          }
+        }
+
+        .timerSection {
+          text-align: center;
+          margin-bottom: var(--spacingSmall);
+          .timer {
+            font-size: var(--fontSizeBase);
+            color: var(--blackColor);
+          }
+        }
+
+        .resendSection {
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--spacingSmall);
+
+          .resendText {
+            color: var(--blackColor);
+          }
+
+          .resendButton {
+            background: none;
+            border: none;
+            color: var(--primaryColor);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0;
+
+            &:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+            }
+
+            &:hover:not(:disabled) {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .actionButtons {
+          display: flex;
+          flex-direction: column;
+          gap: var(--spacingLarge);
+          margin-top: var(--spacingLarge);
+
+          .verifyButton {
+            color: white;
+            width: 100%;
+            padding: var(--paddingMedium);
+            background-color: var(--primaryColor);
+            border: none;
+            border-radius: var(--borderRadiusMedium);
+            font-size: var(--fontSizeBase);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color var(--transitionDuration);
+
+            &:hover:not(:disabled) {
+              background-color: #29523A;
+            }
+
+            &:disabled {
+              opacity: 0.7;
+              cursor: not-allowed;
+            }
+          }
+
+          .cancelButton {
+            width: 100%;
+            padding: var(--paddingMedium);
+            background-color: var(--darkGrayColor);
+            color: var(--whiteColor);
+            border: none;
+            border-radius: var(--borderRadiusMedium);
+            font-size: var(--fontSizeBase);
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color var(--transitionDuration);
+
+            
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .verifyPageLeft {
+      width: 40%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .verifyPageLeft {
+      width: 100%;
+      height: 200px;
+    }
+
+    .verifyPageRight {
+      padding: var(--spacingMedium);
+
+      .logoLink {
+        position: static;
+        margin-bottom: var(--spacingLarge);
+      }
+
+      .verifyFormContainer {
+        .verifyTitle {
+          font-size: var(--fontSizeH3);
+        }
+
+        .codeInputs {
+          .codeInput {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+    }
+  }
+}

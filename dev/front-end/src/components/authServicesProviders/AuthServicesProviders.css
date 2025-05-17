@@ -1,0 +1,68 @@
+.authServicesProvidersComponentClass {
+    display: flex;
+    gap: var(--spacingMedium);
+    width: 100%;
+  
+    .providerButton {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacingSmall);
+      padding: var(--paddingMedium);
+      border-radius: var(--borderRadiusMedium);
+      font-size: var(--fontSizeBase);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transitionDuration);
+      border: 1px solid var(--lightDarkGrayColor);
+  
+      .providerIcon {
+        font-size: var(--fontSizeLarge);
+      }
+  
+      &.googleButton {
+        background-color: var(--whiteColor);
+        color: var(--blackColor);
+  
+        &:hover {
+          background-color: #f5f5f5;
+          border-color: #dadce0;
+        }
+      }
+  
+      &.facebookButton {
+        background-color: #1877f2;
+        color: var(--whiteColor);
+        border-color: #1877f2;
+  
+        &:hover {
+          background-color: #166fe5;
+          border-color: #166fe5;
+        }
+      }
+  
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(45, 141, 85, 0.2);
+      }
+  
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+    }
+  
+    @media (max-width: 1400px) {
+      flex-direction: column;
+      
+      .providerButton {
+        width: 100%;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      gap: var(--spacingSmall);
+    }
+  }

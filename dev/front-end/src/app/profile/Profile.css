@@ -1,0 +1,41 @@
+.ProfilePageComponentClass {
+
+    color: var(--blackColor);
+
+    background-color: var(--whiteColor);
+    display: flex;
+    gap: var(--spacingSmall);
+    flex-grow: 1;
+
+
+    >.sidBar {
+        position: relative;
+        width: 115px;
+        background-color: var(--whiteColor);
+
+        padding: var(--paddingMediumPage) 0;
+
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacingMedium);
+    }
+
+    >.mainContent {
+        flex-grow: 1;
+
+        padding: 0 var(--paddingLarge);
+        padding-top: 10px;
+        display: flex;
+        /* 140px :the  header height */
+      max-height: calc(100dvh - 140px);
+      overflow: auto;
+      scrollbar-width: none;
+
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacingLarge);
+
+
+    }
+
+}

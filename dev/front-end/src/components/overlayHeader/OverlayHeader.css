@@ -1,0 +1,113 @@
+/* src/components/overlayHeader/OverlayHeader.css */
+
+.OverlayHeaderComponentClass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: var(--spacingXLarge);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  
+    .welcomeText {
+      display: inline-block;
+      font-size: var(--fontSizeLarge);
+      margin-bottom: var(--spacingMedium);
+      padding: var(--spacingSmall) var(--spacingLarge);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border-radius: var(--borderRadiusLarge);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+      color: #FFFFFF;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeInDown 0.6s ease-out;
+      position: relative;
+  
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 30px;
+        background-color: var(--primaryColor);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+  
+      &::before {
+        left: -40px;
+      }
+  
+      &::after {
+        right: -40px;
+      }
+    }
+  
+    .brandName {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: var(--spacingMedium);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    }
+  
+    .tagline {
+      font-size: var(--fontSizeLarge);
+      font-weight: 300;
+      color: #FFFFFF;
+      font-style: italic;
+      animation: fadeInUp 0.6s ease-out 0.4s backwards;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      padding: var(--spacingMedium);
+  
+      .welcomeText {
+        font-size: var(--fontSizeSmall);
+        padding: var(--spacingVerySmall) var(--spacingSmall);
+      }
+      .brandName {
+        font-size: 2rem;
+        margin-bottom: var(--spacingSmall);
+      }
+      .tagline {
+        font-size: var(--fontSizeBase);
+      }
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

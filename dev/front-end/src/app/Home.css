@@ -1,0 +1,110 @@
+.HomeComponentClass {
+
+     position: relative;
+     &::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 50vh;
+        background-image: url('/assets/imgs/homeBack.jpg');
+        background-size: cover;
+        background-blend-mode: color;
+        background-color: rgba(0, 0, 0, 0.36);
+        filter: blur(3px);
+        z-index: 0;
+     }
+
+    &>.container {
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        
+    }
+
+    section.mainSection {
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+
+        @media(max-width: 552px){
+
+            margin-top: 20px;
+        }
+        &>.mainTitle {
+            font-size: 2.5em;
+            color: white;
+            z-index: 1;
+            @media(max-width: 552px){
+
+                font-size:2.1em;
+            }
+        }
+
+        &>.searchContainer {
+            display: flex;
+            justify-content: center;
+
+            z-index: 1;
+        }
+    }
+
+    section.offersSection {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+
+
+
+        &>.offersContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            justify-content: center;
+
+            @media(max-width :552px) {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+        }
+
+        &>.moreOffersContainer {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+
+            &>.moreOffersBtn {
+
+                padding: 14px 20px;
+                align-self: flex-end;
+                text-transform: capitalize;
+                font-size: 1.20rem;
+
+            }
+        }
+
+
+    }
+
+    section.guestExperiencesSection {
+        &>.sectionTitle {
+            margin-bottom: 50px;
+        }
+
+        &>.guestsContainer {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+            @media(max-width :552px) {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            gap: 30px;
+            justify-content: space-between;
+
+
+        }
+    }
+}
