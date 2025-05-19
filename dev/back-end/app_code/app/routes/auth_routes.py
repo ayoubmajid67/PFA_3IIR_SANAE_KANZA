@@ -22,56 +22,67 @@ auth_bp = Blueprint('auth', __name__)
 
 
 @auth_bp.route('/login', methods=['POST'])
+
 def login():
-     
     # Validate input fields
     data = request.get_json() or {}
     
-    required_fields = {'Email', 'Password'}
+    required_fields = {'email', 'password'}
 
-    is_valid, missing_fields =Utile.validate_input(data, required_fields)
+    is_valid, missing_fields = Utile.validate_input(data, required_fields)
     
     if not is_valid:
         return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
 
-    required_string_fields = {'Email', 'Password'}
-    is_valid_string, missing_string_fields =Utile.are_all_strings(data,required_string_fields)
-    if  not is_valid_string : 
-        return jsonify({'error': f' invalid type fields types [int -> string!] : : {", ".join(missing_string_fields)}'}), 400
+    required_string_fields = {'email', 'password'}
+    is_valid_string, missing_string_fields = Utile.are_all_strings(data, required_string_fields)
+    if not is_valid_string:
+        return jsonify({'error': f'Invalid type fields [int -> string!]: {", ".join(missing_string_fields)}'}), 400
         
-    email = data['Email'].strip().lower()
-    password = data['Password'].strip()
+    email = data['email'].strip().lower()
+    password = data['password'].strip()
 
-    # Authenticate user by checking all relevant tables
-    user_tables = ["Annonceur", "Etudiant", "Admin"]
-    user, user_type = None, None
-   
-    for table in user_tables:
-        user, user_type =authUtils.authenticate_user(email, password, table)
-        if user:
-            break
+    # Authenticate user by checking the compte table
+    query = text("""
+        SELECT c.*, 
+               CASE 
+                   WHEN a.idAdmin IS NOT NULL THEN 'admin'
+                   WHEN p.id_Professeur IS NOT NULL THEN 'professeur'
+                   WHEN u.idUser IS NOT NULL THEN 'user'
+               END as type
+        FROM compte c
+        LEFT JOIN admin a ON c.id_compte = a.idAdmin
+        LEFT JOIN professeur p ON c.id_compte = p.id_Professeur
+        LEFT JOIN user u ON c.id_compte = u.idUser
+        WHERE c.email = :email
+    """)
+    
+    user = db.session.execute(query, {"email": email}).mappings().first()
 
     # Handle authentication failure
     if not user:
         return jsonify({'error': 'Invalid credentials'}), 401
 
+    # Verify password
+    if not bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
+        return jsonify({'error': 'Invalid credentials'}), 401
+
     # Check account status
-    if user.get("Status") != 'active':
+    if user['status'] != 'active':
         return jsonify({'error': "Contact your administrator to activate your account!"}), 403
     
-    
-  
-    server_ip,server_port = Utile.get_request_server_port(request) 
-    profile_image_url = Utile.get_account_file_url(server_ip,server_port,user['Profile_Image'])
+    # Get server info for profile image URL
+    server_ip, server_port = Utile.get_request_server_port(request)
+    profile_image_url = Utile.get_account_file_url(server_ip, server_port, Utile.get_profile_image_file(email))
  
     # Generate and return token
-    token = generate_token(user['Email'], user_type)
+    token = generate_token(user['email'], user['user_type'])
     response_data = {
         'message': "User logged in successfully",
         'token': token,
-        'username': f"{user['Prenom']} {user['Nom']}",
+        'username': f"{user['firstname']} {user['lastname']}",
         'profileImg': profile_image_url,
-        'userType': user_type
+        'userType': user['user_type']
     }
     return jsonify(response_data), 200
 

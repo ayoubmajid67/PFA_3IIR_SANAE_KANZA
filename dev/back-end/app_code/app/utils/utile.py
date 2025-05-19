@@ -74,6 +74,7 @@ def hash_password(password):
     # Generate a salt and hash the password
     salt = bcrypt.gensalt()
     hashed_password = bcrypt.hashpw(password_bytes, salt)
+    
 
 
     # Return the hashed password
@@ -96,6 +97,9 @@ def get_request_server_port(request):
     server_port = request.host.split(':')[1] if ':' in request.host else '80'
     return server_ip, server_port
 
+
+def get_profile_image_file(email):
+    return  f"{email}_Profile_Image.webp"
 def get_account_file_url(server_ip,server_port,file_name) :
     return f"http://{server_ip}:{server_port}/api/{current_app.config['API_VERSION']}/accounts/file/{file_name}"
 

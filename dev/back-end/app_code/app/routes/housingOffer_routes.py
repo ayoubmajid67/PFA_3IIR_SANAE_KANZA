@@ -352,4 +352,70 @@ def get_housing_offer_image(housing_id, filename):
 @housingOffer_bp.route('/<housing_id>/apply', methods=['POST'])
 @etudiant_required
 def apply_for_a_housing_offer(etudiant, housing_id):
-      return "hi"    
+    # Check if housing offer exists
+    housing_query = text("SELECT * FROM Logement WHERE LogementId = :id")
+    housing = db.session.execute(housing_query, {"id": housing_id}).mappings().first()
+    if not housing:
+        return jsonify({'error': 'Housing offer not found'}), 404
+    
+    # Check if housing is available
+    if housing['Status'] != 'Disponible':
+        return jsonify({'error': 'This housing offer is not available for applications'}), 400
+    
+    # Check if student has already applied
+    check_application_query = text("""
+        SELECT * FROM LogementApplications 
+        WHERE FK_LogementId = :housing_id AND FK_EtudiantId = :etudiant_id
+    """)
+    existing_application = db.session.execute(check_application_query, {
+        "housing_id": housing_id,
+        "etudiant_id": etudiant['EtudiantId']
+    }).mappings().first()
+    
+    if existing_application:
+        return jsonify({'error': 'You have already applied for this housing offer'}), 400
+    
+    # Get application data from request
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    # Validate required fields
+    required_fields = ['message']
+    is_valid, missing_fields = Utile.validate_input(data, required_fields)
+    if not is_valid:
+        return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
+    
+    # Insert application into database
+    insert_query = text("""
+        INSERT INTO LogementApplications (
+            FK_LogementId, 
+            FK_EtudiantId, 
+            Message, 
+            Status,
+            ApplicationDate
+        ) VALUES (
+            :housing_id,
+            :etudiant_id,
+            :message,
+            'Pending',
+            CURRENT_TIMESTAMP
+        )
+    """)
+    
+    try:
+        db.session.execute(insert_query, {
+            "housing_id": housing_id,
+            "etudiant_id": etudiant['EtudiantId'],
+            "message": data['message'].strip()
+        })
+        db.session.commit()
+        
+        return jsonify({
+            "message": "Application submitted successfully",
+            "application_id": db.session.execute(text("SELECT LAST_INSERT_ID()")).scalar()
+        }), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Failed to submit application: {str(e)}'}), 500    

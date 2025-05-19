@@ -1,12 +1,24 @@
 from flask import Flask, jsonify,request
 from sqlalchemy import text
-from flask import Blueprint
+from flask import Blueprint,request
 
+import app.utils.utile as Utile
 from app.db import db
 from app.models.test import Test
 
 
 tests_bp = Blueprint('tests', __name__)
+
+@tests_bp.route('/generateHash')
+def generate_hash_password():
+    data = request.get_json()
+    if data.get('password','') == '' :
+        return jsonify({'error':'missig fields password'}),401
+    password = data.get('password') 
+
+    return Utile.hash_password(password)
+ 
+
 
 @tests_bp.route('/checkDbConnexion')
 def healthcheck():
