@@ -1,0 +1,74 @@
+.HotelsDemandsComponentClass {
+    height: 100%;
+    flex: 1;
+    padding: var(--paddingLarge);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacingMedium);
+  
+    > h1 {
+      font-size: var(--fontSizeXLarge);
+      color: var(--darkGrayColor);
+      margin-bottom: var(--spacingMedium);
+    }
+  
+    > .demandsContainer {
+      flex: 1;
+      background-color: var(--whiteColor);
+      border: 1px solid var(--borderColor);
+      border-radius: var(--borderRadiusMedium);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: var(--paddingMedium);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+  
+      
+    
+  
+      > .demandsTable {
+     
+        border-collapse: collapse;
+       width: 95%;
+        
+  
+        > thead {
+          background-color: var(--lightGrayColor);
+  
+          > tr {
+            > th {
+              padding: var(--paddingMedium);
+              font-size: var(--fontSizeMedium);
+              color: var(--darkGrayColor);
+              font-weight: bold;
+              text-align: left;
+            }
+          }
+        }
+  
+        > tbody {
+          > tr {
+            border-bottom: 1px solid var(--borderColor);
+            
+            &:nth-of-type(odd) {
+              background-color: var(--lightGrayColor);
+            }
+  
+            > td {
+              padding: var(--paddingMedium);
+              font-size: var(--fontSizeSmall);
+              color: var(--paragraphColor);
+              a{
+                color: white;
+              }
+  
+              > .MuiButton-root {
+                text-transform: capitalize;
+                font-size: var(--fontSizeSmall);
+              }
+            }
+          }
+        }
+      }
+    }
+  }

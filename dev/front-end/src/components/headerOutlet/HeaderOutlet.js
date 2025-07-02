@@ -58,24 +58,20 @@ export default function HeaderOutlet({ customClass, profileImg = false }) {
 
   const links = [
 	[
-	  { to: "/hotelSpace", icon: <AddHomeWorkIcon />, text: "Hotel space" },
-	  { to: "/HotelsPayments", icon: <BusinessIcon />, text: "Hotels Payments " },
-	  { to: "/registerHotel", icon: <BusinessIcon />, text: "hotel registration" },
+	  { to: "/", icon: <AddHomeWorkIcon />, text: "Home" },
+	  { to: "/registerTeacher", icon: <BusinessIcon />, text: "teacher registration" },
 	],
 	[
-	  { to: "/hotelsDemands", icon: <EventIcon />, text: "Hotel demands" },
-	  { to: "/profile", icon: <LineAxisIcon />, text: "Dashboard Hotel" },
+	  { to: "/teachersDemands", icon: <EventIcon />, text: "Teachers demands" },
 	  { to: "/DashboardAdmin", icon: <LineAxisIcon />, text: "Dashboard Admin" },
 	],
 	[
-	  { to: "/AdminReservationsManagement", icon: <EventIcon />, text: "Admin Reservations" },
-	  { to: "/hotelReservationsManagement", icon: <StorageIcon />, text: "Hotel Reservations" },
 	  { to: "/profile", icon: <PersonIcon />, text: "Profile" },
+    { to: "/usersManagement", icon: <ManageAccountsIcon />, text: "Users Management" },
 	],
 	[
-	  { to: "/usersManagement", icon: <ManageAccountsIcon />, text: "Users Management" },
-	  { to: "/hotelsManagement", icon: <HotelIcon />, text: "Hotels Management" },
-	  { to: "/TeamMembers", icon: <GroupIcon />, text: "Team members" },
+
+
 	],
   ];
   return (
@@ -191,6 +187,7 @@ export default function HeaderOutlet({ customClass, profileImg = false }) {
         <OtherLinksBox
           customClass={otherLinksShowStat ? "activeOtherLinksBoxComponentClass" : ""}
           onMouseLeave={handleMouseLeaveOtherLinksBox}
+          
 		  links={links}
         />
       </header>

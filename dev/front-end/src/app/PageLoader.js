@@ -6,9 +6,9 @@ import {usePathname} from "next/navigation";
 
 export  default  function PageLoader({children}) {
   const currentPage = usePathname();
-  const noHeaderPage = ["/login","/signUp","/verify","/profile","/login1"];
+  const noHeaderPage = ["/login","/signUp","/verify","/profile",'/registerTeacher'];
   const Header2Page = ["/profile"];
-  const noFooterPage = ["/login","/signUp","/verify","/profile","/login1"];
+  const noFooterPage = ["/login","/signUp","/verify","/profile","/registerTeacher"];
   
 
   const isAllowShowHeader=  !noHeaderPage.includes(currentPage);

@@ -8,7 +8,7 @@ const userProfile = "/assets/imgs/profile2.png";
 
 export default function ProfileSection() {
 	const [formData, setFormData] = useState({
-		firstName: "Ayoub",
+		firstName: "Salim",
 		lastName: "",
 		gender: "",
 		phoneNumber: "",
@@ -40,7 +40,7 @@ export default function ProfileSection() {
 	return (
 		<div className="ProfileSectionComponentClass">
 			<div className="profileContainer">
-				<InfoCardBox title="Ayoub" description="Ayoubmajid71@gmail.com" customClass="ProfileSectionLargePhotoComponentClass" imgSrc={userProfile} />
+				<InfoCardBox title="Salim" description="Salim@gmail.com" customClass="ProfileSectionLargePhotoComponentClass" imgSrc={userProfile} />
 				<Button variant="contained" onClick={handleEditClick}>
 					{isEditMode ? "Cancel" : "Edit"}
 				</Button>
@@ -75,7 +75,7 @@ export default function ProfileSection() {
 			</div>
 			<div className="emailSection">
 				<h2>My email Address</h2>
-				<InfoCardBox title="Ayoubmajid71@gmail.com" description="1 month ago" />
+				<InfoCardBox title="Salim@gmail.com" description="1 month ago" />
 			</div>
 		</div>
 	);

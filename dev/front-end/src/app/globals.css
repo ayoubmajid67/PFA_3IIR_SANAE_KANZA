@@ -84,7 +84,7 @@ body {
 
   .PageComponentClass {
 
-    margin-top: 106px;
+    margin-top: 90px;
     min-height: calc(100vh - 156px);
     @media(max-width: 768px){
 

@@ -10,7 +10,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import OverlayHeader from "@/components/overlayHeader/OverlayHeader";
 import AuthServicesProviders from "@/components/authServicesProviders/AuthServicesProviders";
-
+import { useRouter } from "next/navigation";
 
 const loginImage = "/assets/imgs/loginBack.png";
 const logo = "/assets/logo.png";
@@ -18,6 +18,7 @@ const logo = "/assets/logo.png";
 export default function LoginPage() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isMenuVisible, setMenuVisible] = useState(false);
+	const router = useRouter();
 	const toggleMenu = () => {
 		setMenuVisible(!isMenuVisible);
 	};
@@ -34,8 +35,8 @@ export default function LoginPage() {
 			<div className="loginPageLeft">
 				<OverlayHeader
 					welcomeText="Welcome to"
-					brandName="MrBooking"
-					tagline="Your Gateway to Exceptional Stays"
+					brandName="E-Learning"
+					tagline="Your Gateway to Exceptional Learning"
 				/>
 				<img src={loginImage} alt="Login Background" className="loginBackgroundImage" />
 			</div>
@@ -73,14 +74,7 @@ export default function LoginPage() {
 						<PasswordField />
 					</div>
 
-					<div className="formGroup">
-						<SelectFilterBox 
-							customClass="selectFilterBoxAuthComponentClass" 
-							selectData={["user", "hotel", "admin"]} 
-							selectName="userTypeSelect" 
-						/>
-					</div>
-
+					
 					<div className="formLinks">
 						<Link href="/forgotPassword" className="forgotPasswordLink">
 							Forgot password?
@@ -97,6 +91,14 @@ export default function LoginPage() {
 						color="primary" 
 						className="loginButton"
 						sx={{ mt: 4, mb: 2, borderRadius: "50px" }}
+						onClick={(e)=>{
+							e.preventDefault();
+							setIsLoading(true);
+							setTimeout(() => {
+								setIsLoading(false);
+								router.push("/");
+							}, 2000);
+						}}
 					>
 						Login
 					</Button>

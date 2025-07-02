@@ -1,0 +1,136 @@
+.CouresesSectionComponentClass {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--spacingMedium);
+    padding: var(--paddingMedium);
+
+    > .header {
+        display: flex;
+        padding: var(--paddingMedium);
+        justify-content: center;
+
+        > .title {
+            font-size: var(--fontSizeH1);
+            color: var(--darkGrayColor);
+            font-weight: 600;
+        }
+    }
+
+    > .coursesGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: var(--spacingLarge);
+        padding: var(--paddingMedium);
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .courseCard {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .courseImage {
+                position: relative;
+                height: 200px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                }
+
+                .courseStatus {
+                    position: absolute;
+                    top: 12px;
+                    right: 12px;
+                    padding: 6px 12px;
+                    border-radius: 20px;
+                    color: white;
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+            }
+
+            .courseContent {
+                padding: var(--paddingMedium);
+
+                .courseName {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: var(--darkGrayColor);
+                    margin-bottom: 8px;
+                }
+
+                .instructor {
+                    color: var(--paragraphColor);
+                    font-size: 0.875rem;
+                    margin-bottom: 16px;
+                }
+
+                .progressSection {
+                    margin-bottom: 16px;
+
+                    .progressInfo {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 8px;
+                        font-size: 0.875rem;
+                        color: var(--paragraphColor);
+                    }
+                }
+
+                .courseDetails {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 12px;
+                    margin-bottom: 16px;
+                    padding: 12px;
+                    background: rgba(0, 0, 0, 0.02);
+                    border-radius: 8px;
+
+                    .detailItem {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+
+                        span:first-child {
+                            font-size: 0.75rem;
+                            color: var(--paragraphColor);
+                        }
+
+                        span:last-child {
+                            font-size: 0.875rem;
+                            font-weight: 500;
+                            color: var(--darkGrayColor);
+                        }
+                    }
+                }
+
+                .courseActions {
+                    display: flex;
+                    gap: 8px;
+                    justify-content: flex-end;
+
+                    .MuiButton-root {
+                        text-transform: none;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

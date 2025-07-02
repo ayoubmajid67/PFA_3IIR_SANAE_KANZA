@@ -1,0 +1,258 @@
+.RegisterTeacherPageComponentClass{
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+        @media(max-width:768px){
+        
+        
+          min-height: 100vh;
+        }
+        background-color: var(--whiteColor);
+        color: var(--blackColor);
+      
+        .logo{
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          &>img{
+            width: 120px;
+            opacity: 0.8;
+            @media  (max-width: 992px) {
+              width: 100px;
+            }
+            @media  (max-width: 768px) {
+              width: 80px;
+            }
+      
+          }
+       }
+        .signupLeft {
+         
+          background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/imgs/signUpBack.png');
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          align-items: center;
+          
+      
+      
+          padding: var(--spacingLarge);
+          width: 53%;
+            @media  (max-width: 1200px) {
+              width: 40%;
+              justify-content: center;
+            }
+            @media  (max-width: 992px) {
+              width: 30%;
+      
+            }
+          h1 {
+            color: #FFFFFF;
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.4;
+            word-spacing: 0.5px;
+            max-width: 600px;
+            margin-top: -80px;
+            margin-left: 50px;
+      
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            @media  (max-width: 1200px) {
+              font-size: 2.3rem;
+              margin-top: -40px;
+              margin-left: 0px;
+              
+            }
+            @media  (max-width: 992px) {
+              display: none;
+              
+            }
+          }
+        }
+      
+        .signupRight {
+          flex: 1;
+          position: relative;
+          padding: var(--spacingLarge);
+          overflow: auto;
+          scrollbar-width: none;
+      
+          .themeToggleLoginPage {
+            position: absolute;
+            top: var(--spacingMedium);
+            right: var(--spacingMedium);
+            z-index: 10;
+          }
+      
+          .signupFormContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+       
+            padding: var(--spacingLarge) var(--spacingLarge);
+            gap: 30px;
+         
+       
+           
+      
+        
+            h1 {
+              text-align: center;
+              font-size: var(--fontSizeH2);
+              font-weight: 900;
+       font-family: Poppins;
+          
+              font-size: 2.2rem;
+              
+            }
+            form{
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              @media(max-width:1200px){
+                gap: 15px;
+                }
+            }
+      
+          
+      
+            .passwordFields,
+            .nameFields {
+              display: flex;
+              gap: var(--spacingMedium);
+             @media(max-width:768px){
+      flex-wrap: wrap;
+             }
+             
+            }      
+            .termsCheckbox{
+              .input[type="checkbox"]{
+                margin-top: var(--spacingVerySmall);
+              }
+            }
+      
+            .signupButton {
+              width: 100%;
+              padding: var(--paddingMedium);
+              background-color: var(--primaryColor);
+              color: #FFFFFF;
+              border: none;
+              border-radius: var(--borderRadiusMedium);
+              font-size: var(--fontSizeBase);
+              font-weight: 600;
+              cursor: pointer;
+              transition: background-color var(--transitionDuration);
+      
+              &:hover {
+                background-color: var(--primaryDarkColor);
+              }
+            }
+      
+            .loginLink {
+              text-align: center;
+              margin-top: var(--spacingLarge);
+              font-weight: bold;
+              color: var(--paragraphColor);
+            
+      
+              a {
+                color: var(--primaryColor);
+                text-decoration: none;
+                font-weight: 500;
+      
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .RegisterTeacherPageComponentClass{
+          .signupRight {
+            .signupFormContainer {
+              .socialButtons {
+                flex-direction: column;
+              }
+            }
+          }
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .RegisterTeacherPageComponentClass{
+          flex-direction: column;
+      
+          .signupLeft {
+            display: none;
+          }
+      
+          .signupRight {
+            padding: var(--spacingMedium);
+      
+            .signupFormContainer {
+              padding: var(--spacingMedium);
+      
+              .nameFields {
+                flex-direction: column;
+                gap: var(--spacingSmall);
+              }
+            }
+          }
+        }
+    
+      
+}
+
+.domainsSection {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid var(--borderColor);
+    border-radius: var(--borderRadiusMedium);
+
+    h3 {
+        margin-bottom: 15px;
+        color: var(--textColor);
+    }
+
+    .domainsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        border: 1px solid var(--borderColor);
+        border-radius: var(--borderRadiusSmall);
+    }
+}
+
+.documentUpload {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid var(--borderColor);
+    border-radius: var(--borderRadiusMedium);
+
+    h3 {
+        margin-bottom: 15px;
+        color: var(--textColor);
+    }
+
+    input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px dashed var(--borderColor);
+        border-radius: var(--borderRadiusSmall);
+        cursor: pointer;
+    }
+
+    small {
+        display: block;
+        color: var(--textSecondaryColor);
+        font-size: 0.8em;
+    }
+}

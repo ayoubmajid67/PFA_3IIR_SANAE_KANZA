@@ -12,7 +12,7 @@ export default function OtherLinksBox({ customClass, onMouseLeave, links }) {
 			{links.map((group, groupIndex) => (
 				<ul className="links" key={groupIndex}>
 					{group.map((link, linkIndex) => (
-						<li key={linkIndex}>
+						<li key={linkIndex} onClick={onMouseLeave}>
 							<Link href={link.to}>
 								{link.icon} 
 							<span>{link.text}</span>
